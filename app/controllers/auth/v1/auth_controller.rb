@@ -10,12 +10,22 @@ module Auth
           email: resource_params[:email]
         ).try(:authenticate, resource_params[:password])
 
-        account ? render(json: account, serializer: AccountWithTokenSerializer) : head(401)
+        if account
+          render json: {
+            account: V1::AccountSerializer.new(account).as_json,
+            token: account.jwt
+          }
+        else
+          head 401
+        end
       end
 
       def sign_up
         account = Account.create!(resource_params)
-        render json: account, status: :created, serializer: AccountWithTokenSerializer
+        render json: {
+          account: V1::AccountSerializer.new(account).as_json,
+          token: account.jwt
+        }, status: 201
       end
 
       private
