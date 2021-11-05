@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_11_01_012319) do
     t.datetime "last_sign_in_at", comment: "直近のサインイン時刻"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_accounts_on_email", unique: true
   end
 
 end
