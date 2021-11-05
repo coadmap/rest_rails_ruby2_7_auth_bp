@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 2021_11_05_123540) do
   create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "アカウント", force: :cascade do |t|
     t.string "email", null: false, comment: "メールアドレス"
     t.string "password_digest", comment: "暗号化されたパスワード"
-    t.string "first_name", null: false, comment: "名前"
-    t.string "last_name", null: false, comment: "名字"
-    t.string "first_name_kana", null: false, comment: "名前よみがな"
-    t.string "last_name_kana", null: false, comment: "名字よみがな"
+    t.string "first_name", comment: "名前"
+    t.string "last_name", comment: "名字"
+    t.string "first_name_kana", comment: "名前よみがな"
+    t.string "last_name_kana", comment: "名字よみがな"
     t.integer "gender", default: 0, null: false, comment: "性別"
-    t.date "birthday", null: false, comment: "誕生日"
-    t.integer "email_verification_status", default: 0, comment: "メールアドレス確認状態"
+    t.date "birthday", comment: "誕生日"
+    t.integer "email_verification_status", default: 0, null: false, comment: "メールアドレス確認状態"
     t.datetime "last_sign_in_at", comment: "直近のサインイン時刻"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

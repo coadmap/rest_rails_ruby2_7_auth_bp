@@ -11,6 +11,7 @@ class Account < ApplicationRecord
   end
 
   enum email_verification_status: { unspecified: 0, verified: 1 }, _suffix: true
+  enum gender: { male: 0, female: 1, other: 2 }, _suffix: true
 
   validates :email, presence: true, uniqueness: true, format: URI::MailTo::EMAIL_REGEXP
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
