@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_012319) do
+ActiveRecord::Schema.define(version: 2021_11_05_123540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "accounts", comment: "アカウント", force: :cascade do |t|
+  create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "アカウント", force: :cascade do |t|
     t.string "email", null: false, comment: "メールアドレス"
     t.string "password_digest", comment: "暗号化されたパスワード"
     t.string "first_name", null: false, comment: "名前"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(version: 2021_11_01_012319) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_accounts_on_email", unique: true
+  end
+
+  create_table "jtis", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "JWTのホワイトリスト", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
