@@ -7,13 +7,13 @@ module Auth
 
       def sign_in
         account = Account.find_by(
-          email: resource_params[:email]
+            email: resource_params[:email]
         ).try(:authenticate, resource_params[:password])
 
         if account
           render json: {
-            account: V1::AccountSerializer.new(account).as_json,
-            token: account.jwt
+              account: ::V1::AccountSerializer.new(account).as_json,
+              token: account.jwt
           }
         else
           head 401
@@ -23,8 +23,8 @@ module Auth
       def sign_up
         account = Account.create!(resource_params)
         render json: {
-          account: V1::AccountSerializer.new(account).as_json,
-          token: account.jwt
+            account: ::V1::AccountSerializer.new(account).as_json,
+            token: account.jwt
         }, status: 201
       end
 
