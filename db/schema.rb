@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_123540) do
     t.integer "gender", default: 0, null: false, comment: "性別"
     t.date "birthday", comment: "誕生日"
     t.integer "email_verification_status", default: 0, null: false, comment: "メールアドレス確認状態"
+    t.string "email_verification_token", comment: "メールアドレス確認用トークン"
     t.datetime "last_sign_in_at", comment: "直近のサインイン時刻"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

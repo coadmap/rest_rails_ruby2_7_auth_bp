@@ -13,6 +13,7 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
       t.integer :gender, null: false, default: 0, comment: '性別'
       t.date :birthday, comment: '誕生日'
       t.integer :email_verification_status, null: false, default: 0, comment: 'メールアドレス確認状態'
+      t.string :email_verification_token, comment: 'メールアドレス確認用トークン'
       t.datetime :last_sign_in_at, comment: '直近のサインイン時刻'
 
       t.timestamps
